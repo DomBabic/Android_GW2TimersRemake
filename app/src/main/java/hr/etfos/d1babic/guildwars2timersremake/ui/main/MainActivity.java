@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
-    private ViewPagerAdapter viewPagerAdapter;
+    ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAdapter() {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new EventsFragment(), Constants.KEY_EVENTSFRAGMENT_TITLE);
-        viewPagerAdapter.addFragment(new SubscriptionsFragment(), Constants.KEY_SUBSFRAGMENT_TITLE);
+        viewPagerAdapter.addFragment(new EventsFragment(), Constants.KEY_EVENTS_FRAGMENT_TITLE);
+        viewPagerAdapter.addFragment(new SubscriptionsFragment(), Constants.KEY_SUBS_FRAGMENT_TITLE);
 
         viewPager.setAdapter(viewPagerAdapter);
     }

@@ -36,5 +36,5 @@ public class EventsFragment extends Fragment {
         ButterKnife.bind(this, view);
     }
 
-    //TODO: Fill ListView with data
+    //TODO: Create ListView layout, custom ListView adapter and fill ListView with data
 }
