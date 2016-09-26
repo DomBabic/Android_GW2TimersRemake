@@ -1,4 +1,4 @@
-package hr.etfos.d1babic.guildwars2timersremake.ui.subs;
+package hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,27 +10,20 @@ import android.widget.ListView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import hr.etfos.d1babic.guildwars2timersremake.R;
 
 /**
  * Created by DominikZoran on 22.09.2016..
  */
-public class SubscriptionsFragment extends Fragment {
+public class EventsFragment extends Fragment {
 
-    @BindView(R.id.subs_listview)
-    ListView subsListView;
-
-    @OnClick(R.id.subs_info)
-    public void displayInfo() {
-        CustomDialog dialog = new CustomDialog(getContext());
-        dialog.show();
-    }
+    @BindView(R.id.events_listview)
+    ListView eventsListView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.subs_fragment, container, false);
+        return inflater.inflate(R.layout.events_fragment, container, false);
     }
 
     @Override

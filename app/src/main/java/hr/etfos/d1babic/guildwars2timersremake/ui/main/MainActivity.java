@@ -10,9 +10,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.etfos.d1babic.guildwars2timersremake.R;
 import hr.etfos.d1babic.guildwars2timersremake.common.Constants;
-import hr.etfos.d1babic.guildwars2timersremake.ui.events.EventsFragment;
+import hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment.EventsFragment;
 import hr.etfos.d1babic.guildwars2timersremake.ui.main.adapter.ViewPagerAdapter;
-import hr.etfos.d1babic.guildwars2timersremake.ui.subs.SubscriptionsFragment;
+import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.SubscriptionsFragment;
 
 public class MainActivity extends AppCompatActivity {
 

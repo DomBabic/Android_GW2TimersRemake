@@ -1,4 +1,4 @@
-package hr.etfos.d1babic.guildwars2timersremake.ui.subs;
+package hr.etfos.d1babic.guildwars2timersremake.ui.subs.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
