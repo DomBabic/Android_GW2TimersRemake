@@ -3,7 +3,7 @@ package hr.etfos.d1babic.guildwars2timersremake.model;
 /**
  * Created by DominikZoran on 24.09.2016..
  */
-public class WorldEvent {
+public class WorldEventModel {
 
     private int id;
     private String title;
@@ -15,7 +15,7 @@ public class WorldEvent {
     private int subscription;
     private long timeRemaining;
 
-    public WorldEvent(int id, String title, int icon, String location, String description, String occurrence, String
+    public WorldEventModel(int id, String title, int icon, String location, String description, String occurrence, String
             occurrenceShift, int subscription) {
         this.id = id;
         this.title = title;
@@ -27,7 +27,7 @@ public class WorldEvent {
         this.subscription = subscription;
     }
 
-    public WorldEvent(String title, int icon, String location, String description, String occurrence, String
+    public WorldEventModel(String title, int icon, String location, String description, String occurrence, String
             occurrenceShift, int subscription) {
         this.title = title;
         this.icon = icon;

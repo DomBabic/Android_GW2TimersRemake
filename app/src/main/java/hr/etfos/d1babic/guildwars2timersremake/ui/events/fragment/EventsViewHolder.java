@@ -8,7 +8,6 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemClick;
 import hr.etfos.d1babic.guildwars2timersremake.R;
 
 /**
@@ -17,30 +16,30 @@ import hr.etfos.d1babic.guildwars2timersremake.R;
 public class EventsViewHolder {
 
     @BindView(R.id.events_item_icon)
-    ImageView icon;
+    public ImageView icon;
 
     @BindView(R.id.events_item_title)
-    TextView title;
+    public TextView title;
 
     @BindView(R.id.events_item_time)
-    TextView time;
+    public TextView time;
 
     @BindView(R.id.events_hidden_details)
-    LinearLayout layout;
+    public LinearLayout layout;
 
     @BindView(R.id.events_location)
-    TextView location;
+    public TextView location;
 
     @BindView(R.id.events_description)
-    TextView description;
+    public TextView description;
 
-    @OnItemClick(R.id.events_listview_item)
-    private void setVisible() {
+    @OnClick(R.id.events_listview_item)
+    public void setVisible() {
         layout.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.events_hide_details)
-    private void setInvisible() {
+    public void setInvisible() {
         layout.setVisibility(View.GONE);
     }
 

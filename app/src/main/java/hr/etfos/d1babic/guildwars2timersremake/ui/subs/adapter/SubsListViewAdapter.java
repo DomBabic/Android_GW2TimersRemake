@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 
 import hr.etfos.d1babic.guildwars2timersremake.R;
-import hr.etfos.d1babic.guildwars2timersremake.model.WorldEvent;
+import hr.etfos.d1babic.guildwars2timersremake.model.WorldEventModel;
 import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.SubscriptionsViewHolder;
 
 /**
@@ -16,7 +16,7 @@ import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.SubscriptionsVie
  */
 public class SubsListViewAdapter extends BaseAdapter {
 
-    private final ArrayList<WorldEvent> subscribedEvents = new ArrayList<>();
+    private final ArrayList<WorldEventModel> subscribedEvents = new ArrayList<>();
 
     SubscriptionsViewHolder viewHolder;
 

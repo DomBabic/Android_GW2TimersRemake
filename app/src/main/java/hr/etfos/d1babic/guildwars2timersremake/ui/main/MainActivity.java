@@ -73,4 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(viewPagerAdapter);
     }
+
+    //TODO: Edit preferences to populate database on first run.
 }

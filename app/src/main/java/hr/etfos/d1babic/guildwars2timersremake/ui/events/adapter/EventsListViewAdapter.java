@@ -6,9 +6,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import hr.etfos.d1babic.guildwars2timersremake.R;
-import hr.etfos.d1babic.guildwars2timersremake.model.WorldEvent;
+import hr.etfos.d1babic.guildwars2timersremake.model.WorldEventModel;
 import hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment.EventsViewHolder;
 
 /**
@@ -17,9 +18,13 @@ import hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment.EventsViewHold
 
 public class EventsListViewAdapter extends BaseAdapter{
 
-    private final ArrayList<WorldEvent> eventsList = new ArrayList<>();
+    private final List<WorldEventModel> eventsList = new ArrayList<>();
 
-    EventsViewHolder viewHolder;
+    public void setAdapterItems(List<WorldEventModel> worldEventModelList) {
+        eventsList.clear();
+        eventsList.addAll(worldEventModelList);
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
@@ -39,6 +44,8 @@ public class EventsListViewAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
+        EventsViewHolder viewHolder;
+
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.events_listview_item, viewGroup, false);
             viewHolder = new EventsViewHolder(view);
@@ -48,7 +55,13 @@ public class EventsListViewAdapter extends BaseAdapter{
             viewHolder = (EventsViewHolder) view.getTag();
         }
 
-        //TODO: Assign item's view values using presenter
+        if (viewHolder != null) {
+            viewHolder.icon.setImageResource(eventsList.get(position).getIcon());
+            viewHolder.title.setText(eventsList.get(position).getTitle());
+            viewHolder.time.setText(Long.toString(eventsList.get(position).getTimeRemaining()));
+            viewHolder.location.setText("Location: " + eventsList.get(position).getLocation());
+            viewHolder.description.setText("Description: " + eventsList.get(position).getDescription());
+        }
 
         return view;
     }

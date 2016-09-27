@@ -21,7 +21,7 @@ public class SubscriptionsViewHolder {
     TextView title;
 
     @OnClick(R.id.subs_item_button)
-    public void removeSubscription(String eventTitle) {
+    public void removeSubscription() {
         //TODO: Create presenter to handle unsubscribing the event
 
     }
