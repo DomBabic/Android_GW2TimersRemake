@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="drawable" name="behemoth">@drawable/behemoth</item>
+    <item type="drawable" name="elemental">@drawable/elemental</item>
+    <item type="drawable" name="evolvedwurm">@drawable/evolvedwurm</item>
+    <item type="drawable" name="golem">@drawable/golem</item>
+    <item type="drawable" name="greatwurm">@drawable/greatwurm</item>
+    <item type="drawable" name="jormag">@drawable/jormag</item>
+    <item type="drawable" name="karka">@drawable/karka</item>
+    <item type="drawable" name="megadestroyer">@drawable/megadestroyer</item>
+    <item type="drawable" name="modniir">@drawable/modniir</item>
+    <item type="drawable" name="shatterer">@drawable/shatterer</item>
+    <item type="drawable" name="svanir">@drawable/svanir</item>
+    <item type="drawable" name="taidha">@drawable/taidha</item>
+    <item type="drawable" name="tequatl">@drawable/tequatl</item>
+</resources>
