@@ -1,6 +1,8 @@
 package hr.etfos.d1babic.guildwars2timersremake.ui.main;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -10,6 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.etfos.d1babic.guildwars2timersremake.R;
 import hr.etfos.d1babic.guildwars2timersremake.common.Constants;
+import hr.etfos.d1babic.guildwars2timersremake.data.database.EventsDatabase;
+import hr.etfos.d1babic.guildwars2timersremake.presentation.MainPresenter;
+import hr.etfos.d1babic.guildwars2timersremake.presentation.MainPresenterImpl;
 import hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment.EventsFragment;
 import hr.etfos.d1babic.guildwars2timersremake.ui.main.adapter.ViewPagerAdapter;
 import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.SubscriptionsFragment;
@@ -25,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
 
     ViewPagerAdapter viewPagerAdapter;
+
+    SharedPreferences preferences;
+
+    MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,5 +83,20 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
     }
 
-    //TODO: Edit preferences to populate database on first run.
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkIfFirstRun();
+    }
+
+    private void checkIfFirstRun() {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        presenter = new MainPresenterImpl(preferences);
+
+        if(presenter.checkFirstRun()) {
+            EventsDatabase.getInstance(this).populateTable();
+            presenter.setFirstRun();
+        }
+
+    }
 }

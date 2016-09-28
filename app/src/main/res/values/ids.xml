@@ -11,7 +11,7 @@
     <item type="id" name="dialog_note" />
     <item type="id" name="dismiss_dialog_button" />
 
-    <item type="id" name="events_listview_item" />
+    <item type="id" name="events_listview_root" />
     <item type="id" name="events_item_icon" />
     <item type="id" name="events_item_title" />
     <item type="id" name="events_item_time" />

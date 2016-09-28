@@ -15,10 +15,10 @@ import hr.etfos.d1babic.guildwars2timersremake.R;
 public class SubscriptionsViewHolder {
 
     @BindView(R.id.subs_item_icon)
-    ImageView icon;
+    public ImageView icon;
 
     @BindView(R.id.subs_item_title)
-    TextView title;
+    public TextView title;
 
     @OnClick(R.id.subs_item_button)
     public void removeSubscription() {

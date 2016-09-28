@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import hr.etfos.d1babic.guildwars2timersremake.R;
 import hr.etfos.d1babic.guildwars2timersremake.model.WorldEventModel;
@@ -16,9 +17,13 @@ import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.SubscriptionsVie
  */
 public class SubsListViewAdapter extends BaseAdapter {
 
-    private final ArrayList<WorldEventModel> subscribedEvents = new ArrayList<>();
+    private final List<WorldEventModel> subscribedEvents = new ArrayList<>();
 
-    SubscriptionsViewHolder viewHolder;
+    public void setAdapterItems(List<WorldEventModel> worldEventModelList) {
+        subscribedEvents.clear();
+        subscribedEvents.addAll(worldEventModelList);
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
@@ -38,6 +43,8 @@ public class SubsListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
+        SubscriptionsViewHolder viewHolder = null;
+
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.subs_listview_item, viewGroup, false);
             viewHolder = new SubscriptionsViewHolder(view);
@@ -47,7 +54,10 @@ public class SubsListViewAdapter extends BaseAdapter {
             viewHolder = (SubscriptionsViewHolder)view.getTag();
         }
 
-        //TODO: Handle dataset change
+        if(viewHolder != null) {
+            viewHolder.icon.setImageResource(subscribedEvents.get(position).getIcon());
+            viewHolder.title.setText(subscribedEvents.get(position).getTitle());
+        }
 
         return view;
     }

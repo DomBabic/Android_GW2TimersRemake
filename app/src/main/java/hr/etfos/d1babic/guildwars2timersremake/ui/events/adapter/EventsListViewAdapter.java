@@ -11,14 +11,20 @@ import java.util.List;
 import hr.etfos.d1babic.guildwars2timersremake.R;
 import hr.etfos.d1babic.guildwars2timersremake.model.WorldEventModel;
 import hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment.EventsViewHolder;
+import hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment.ItemClickListener;
 
 /**
  * Created by DominikZoran on 26.09.2016..
  */
 
-public class EventsListViewAdapter extends BaseAdapter{
+public class EventsListViewAdapter extends BaseAdapter {
 
     private final List<WorldEventModel> eventsList = new ArrayList<>();
+    private final ItemClickListener itemListener;
+
+    public EventsListViewAdapter(ItemClickListener itemClickListener) {
+        this.itemListener = itemClickListener;
+    }
 
     public void setAdapterItems(List<WorldEventModel> worldEventModelList) {
         eventsList.clear();
@@ -48,7 +54,7 @@ public class EventsListViewAdapter extends BaseAdapter{
 
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.events_listview_item, viewGroup, false);
-            viewHolder = new EventsViewHolder(view);
+            viewHolder = new EventsViewHolder(view, itemListener);
 
             view.setTag(viewHolder);
         } else {

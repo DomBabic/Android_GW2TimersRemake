@@ -8,6 +8,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 import hr.etfos.d1babic.guildwars2timersremake.R;
 
 /**
@@ -33,18 +34,31 @@ public class EventsViewHolder {
     @BindView(R.id.events_description)
     public TextView description;
 
-    @OnClick(R.id.events_listview_item)
-    public void setVisible() {
-        layout.setVisibility(View.VISIBLE);
+    private final ItemClickListener itemListener;
+
+    @OnClick(R.id.events_listview_root)
+    void setVisible() {
+        if (layout != null) {
+            layout.setVisibility(View.VISIBLE);
+        }
     }
 
     @OnClick(R.id.events_hide_details)
-    public void setInvisible() {
+    void setInvisible() {
         layout.setVisibility(View.GONE);
     }
 
-    public EventsViewHolder(View view) {
+    public EventsViewHolder(View view, ItemClickListener itemListener) {
         ButterKnife.bind(this, view);
+        this.itemListener = itemListener;
     }
 
+    @OnLongClick(R.id.events_listview_root)
+    boolean onRootLongClick(){
+        if(itemListener!=null){
+            itemListener.onLongItemClick(title.getText().toString());
+        }
+
+        return true;
+    }
 }

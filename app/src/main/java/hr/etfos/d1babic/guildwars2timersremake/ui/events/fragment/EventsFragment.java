@@ -19,7 +19,7 @@ import hr.etfos.d1babic.guildwars2timersremake.ui.events.adapter.EventsListViewA
 /**
  * Created by DominikZoran on 22.09.2016..
  */
-public class EventsFragment extends Fragment {
+public class EventsFragment extends Fragment implements ItemClickListener{
 
     @BindView(R.id.events_listview)
     ListView eventsListView;
@@ -40,12 +40,6 @@ public class EventsFragment extends Fragment {
         initPresenter();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        initAdapter();
-    }
-
     private void initUI(View view) {
         ButterKnife.bind(this, view);
     }
@@ -54,12 +48,20 @@ public class EventsFragment extends Fragment {
         presenter = new DatabasePresenterImpl(EventsDatabase.getInstance(getContext()));
     }
 
-    private void initAdapter() {
-        adapter = new EventsListViewAdapter();
-        eventsListView.setAdapter(adapter);
-        adapter.setAdapterItems(presenter.getEventsFromDatabase());
-        adapter.notifyDataSetChanged();
+    @Override
+    public void onStart() {
+        super.onStart();
+        initAdapter();
     }
 
-    //TODO: Create ListView layout, custom ListView adapter and fill ListView with data
+    private void initAdapter() {
+        adapter = new EventsListViewAdapter(this);
+        eventsListView.setAdapter(adapter);
+        adapter.setAdapterItems(presenter.getEventsFromDatabase());
+    }
+
+    @Override
+    public void onLongItemClick(String title) {
+        presenter.setTitle(title);
+    }
 }

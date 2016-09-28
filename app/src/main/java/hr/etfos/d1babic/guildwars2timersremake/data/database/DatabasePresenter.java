@@ -13,4 +13,9 @@ public interface DatabasePresenter {
 
     List<WorldEventModel> getSubsFromDatabase();
 
+    void subscribe();
+
+    void unsubscribe();
+
+    void setTitle(String title);
 }

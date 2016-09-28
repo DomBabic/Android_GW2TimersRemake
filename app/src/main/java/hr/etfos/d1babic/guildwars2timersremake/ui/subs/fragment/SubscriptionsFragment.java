@@ -12,6 +12,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.etfos.d1babic.guildwars2timersremake.R;
+import hr.etfos.d1babic.guildwars2timersremake.data.database.DatabasePresenter;
+import hr.etfos.d1babic.guildwars2timersremake.data.database.DatabasePresenterImpl;
+import hr.etfos.d1babic.guildwars2timersremake.data.database.EventsDatabase;
+import hr.etfos.d1babic.guildwars2timersremake.ui.subs.adapter.SubsListViewAdapter;
 import hr.etfos.d1babic.guildwars2timersremake.ui.subs.dialog.CustomDialog;
 
 /**
@@ -28,6 +32,9 @@ public class SubscriptionsFragment extends Fragment {
         dialog.show();
     }
 
+    private DatabasePresenter presenter;
+    private SubsListViewAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,11 +45,27 @@ public class SubscriptionsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initUI(view);
+        initPresenter();
     }
 
     private void initUI(View view) {
         ButterKnife.bind(this, view);
     }
 
-    //TODO: Create ListView layout, custom ListView adapter and fill ListView with data
+    private void initPresenter() {
+        presenter = new DatabasePresenterImpl(EventsDatabase.getInstance(getContext()));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        initAdapter();
+    }
+
+    private void initAdapter() {
+        adapter = new SubsListViewAdapter();
+        subsListView.setAdapter(adapter);
+        adapter.setAdapterItems(presenter.getSubsFromDatabase());
+        adapter.notifyDataSetChanged();
+    }
 }

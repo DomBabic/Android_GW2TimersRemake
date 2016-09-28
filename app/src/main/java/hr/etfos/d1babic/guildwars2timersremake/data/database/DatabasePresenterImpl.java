@@ -9,7 +9,8 @@ import hr.etfos.d1babic.guildwars2timersremake.model.WorldEventModel;
  */
 public class DatabasePresenterImpl implements DatabasePresenter {
 
-    EventsDatabase database;
+    private EventsDatabase database;
+    private String eventTitle;
 
     public DatabasePresenterImpl(EventsDatabase database) {
         this.database = database;
@@ -23,6 +24,21 @@ public class DatabasePresenterImpl implements DatabasePresenter {
     @Override
     public List<WorldEventModel> getSubsFromDatabase() {
         return database.getSubscribedEvents();
+    }
+
+    @Override
+    public void subscribe() {
+        database.subscribeToEvent(eventTitle);
+    }
+
+    @Override
+    public void unsubscribe() {
+        database.unsubscribeEvent(eventTitle);
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.eventTitle = title;
     }
 
 }

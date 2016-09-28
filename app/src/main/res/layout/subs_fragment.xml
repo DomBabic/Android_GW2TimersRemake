@@ -16,6 +16,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/Primary"
+        android:background="@drawable/buttonround"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:id="@id/subs_info"/>
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/Tabs_and_Text"
-        android:dividerHeight="2px"
+        android:dividerHeight="2dp"
         android:id="@id/subs_listview"
         android:layout_above="@id/subs_info"
         android:layout_alignParentTop="true"/>
