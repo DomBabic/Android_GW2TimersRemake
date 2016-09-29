@@ -32,8 +32,6 @@
         android:layout_margin="4dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_toEndOf="@id/subs_item_title"
-        android:layout_toRightOf="@id/subs_item_title"
         android:layout_centerVertical="true"
         android:text="@string/subs_unsub_button"
         android:textAllCaps="false"

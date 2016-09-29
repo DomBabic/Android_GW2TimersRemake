@@ -22,11 +22,15 @@ public class SubscriptionsViewHolder {
 
     @OnClick(R.id.subs_item_button)
     public void removeSubscription() {
-        //TODO: Create presenter to handle unsubscribing the event
-
+        if(listener != null) {
+            listener.onUnsubscribeButtonClick(title.getText().toString());
+        }
     }
 
-    public SubscriptionsViewHolder(View view) {
+    private UnsubscribeClickListener listener;
+
+    public SubscriptionsViewHolder(View view, UnsubscribeClickListener listener) {
         ButterKnife.bind(this, view);
+        this.listener = listener;
     }
 }

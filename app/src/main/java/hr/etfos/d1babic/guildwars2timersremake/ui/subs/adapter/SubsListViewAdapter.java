@@ -11,6 +11,7 @@ import java.util.List;
 import hr.etfos.d1babic.guildwars2timersremake.R;
 import hr.etfos.d1babic.guildwars2timersremake.model.WorldEventModel;
 import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.SubscriptionsViewHolder;
+import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.UnsubscribeClickListener;
 
 /**
  * Created by DominikZoran on 26.09.2016..
@@ -18,6 +19,11 @@ import hr.etfos.d1babic.guildwars2timersremake.ui.subs.fragment.SubscriptionsVie
 public class SubsListViewAdapter extends BaseAdapter {
 
     private final List<WorldEventModel> subscribedEvents = new ArrayList<>();
+    private final UnsubscribeClickListener listener;
+
+    public SubsListViewAdapter(UnsubscribeClickListener listener) {
+        this.listener = listener;
+    }
 
     public void setAdapterItems(List<WorldEventModel> worldEventModelList) {
         subscribedEvents.clear();
@@ -43,11 +49,11 @@ public class SubsListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        SubscriptionsViewHolder viewHolder = null;
+        SubscriptionsViewHolder viewHolder;
 
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.subs_listview_item, viewGroup, false);
-            viewHolder = new SubscriptionsViewHolder(view);
+            viewHolder = new SubscriptionsViewHolder(view, listener);
 
             view.setTag(viewHolder);
         } else {
