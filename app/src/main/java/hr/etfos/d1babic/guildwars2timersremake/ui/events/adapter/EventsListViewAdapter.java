@@ -17,7 +17,7 @@ import hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment.ItemClickListe
  * Created by DominikZoran on 26.09.2016..
  */
 
-public class EventsListViewAdapter extends BaseAdapter {
+public class EventsListViewAdapter extends BaseAdapter{
 
     private final List<WorldEventModel> eventsList = new ArrayList<>();
     private final ItemClickListener itemListener;
@@ -54,7 +54,7 @@ public class EventsListViewAdapter extends BaseAdapter {
 
         if(view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.events_listview_item, viewGroup, false);
-            viewHolder = new EventsViewHolder(view, itemListener);
+            viewHolder = new EventsViewHolder(view, itemListener, eventsList.get(position));
 
             view.setTag(viewHolder);
         } else {
@@ -64,11 +64,15 @@ public class EventsListViewAdapter extends BaseAdapter {
         if (viewHolder != null) {
             viewHolder.icon.setImageResource(eventsList.get(position).getIcon());
             viewHolder.title.setText(eventsList.get(position).getTitle());
-            viewHolder.time.setText(Long.toString(eventsList.get(position).getTimeRemaining()));
             viewHolder.location.setText("Location: " + eventsList.get(position).getLocation());
             viewHolder.description.setText("Description: " + eventsList.get(position).getDescription());
+
+            viewHolder.timerSetup();
+
+            //TODO: Fix CountdownTimer recreation every time getView is called!
         }
 
         return view;
     }
+
 }

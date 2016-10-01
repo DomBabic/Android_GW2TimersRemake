@@ -13,7 +13,6 @@ public class WorldEventModel {
     private String occurrence;
     private String occurrenceShift;
     private int subscription;
-    private long timeRemaining;
 
     public WorldEventModel(int id, String title, int icon, String location, String description, String occurrence, String
             occurrenceShift, int subscription) {
@@ -64,18 +63,6 @@ public class WorldEventModel {
 
     public int getSubscription() {
         return subscription;
-    }
-
-    public void setSubscription(int subscription) {
-        this.subscription = subscription;
-    }
-
-    public long getTimeRemaining() {
-        return timeRemaining;
-    }
-
-    public void setTimeRemaining(long timeRemaining) {
-        this.timeRemaining = timeRemaining;
     }
 
 }
