@@ -10,15 +10,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import hr.etfos.d1babic.guildwars2timersremake.R;
-import hr.etfos.d1babic.guildwars2timersremake.common.utils.TimeCalculator;
-import hr.etfos.d1babic.guildwars2timersremake.model.CountdownTimerModel;
-import hr.etfos.d1babic.guildwars2timersremake.model.WorldEventModel;
-import hr.etfos.d1babic.guildwars2timersremake.view.EventsAdapterView;
 
 /**
  * Created by DominikZoran on 26.09.2016..
  */
-public class EventsViewHolder implements EventsAdapterView {
+public class EventsViewHolder {
 
     @BindView(R.id.events_item_icon)
     public ImageView icon;
@@ -59,31 +55,9 @@ public class EventsViewHolder implements EventsAdapterView {
     }
 
     private final ItemClickListener itemListener;
-    public CountdownTimerModel timer;
-    private TimeCalculator calculator;
-    private final WorldEventModel current;
-    private long timerTime;
 
-    public EventsViewHolder(View view, ItemClickListener itemListener, WorldEventModel current) {
+    public EventsViewHolder(View view, ItemClickListener itemListener) {
         ButterKnife.bind(this, view);
         this.itemListener = itemListener;
-        this.current = current;
-    }
-
-    public void timerSetup() {
-        calculator = new TimeCalculator();
-        timerTime = calculator.calculateTime(current.getOccurrence(), current.getOccurrenceShift(), current
-                .getTitle());
-
-        if(timerTime != 0) {
-            timer = new CountdownTimerModel(timerTime, 1000);
-            timer.setView(this);
-            timer.start();
-        }
-    }
-
-    @Override
-    public void setRemainingTime(String formatedTime) {
-        time.setText(formatedTime);
     }
 }

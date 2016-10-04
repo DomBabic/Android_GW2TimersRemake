@@ -2,6 +2,7 @@ package hr.etfos.d1babic.guildwars2timersremake.ui.events.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,6 +36,8 @@ public class EventsFragment extends Fragment implements ItemClickListener, Event
     private EventsPresenter presenter;
     private DatabaseInterface databaseInterface;
     private Intent intent;
+    private Handler handler;
+    private Runnable runnable;
 
     @Nullable
     @Override
@@ -63,12 +66,32 @@ public class EventsFragment extends Fragment implements ItemClickListener, Event
     public void onStart() {
         super.onStart();
         initAdapter();
+        initHandler();
     }
 
     private void initAdapter() {
         adapter = new EventsListViewAdapter(this);
         eventsListView.setAdapter(adapter);
         presenter.getAllEvents();
+    }
+
+    private void initHandler() {
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        handler.post(runnable);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
     }
 
     @Override

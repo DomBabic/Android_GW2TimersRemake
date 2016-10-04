@@ -1,5 +1,9 @@
 package hr.etfos.d1babic.guildwars2timersremake.model;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by DominikZoran on 24.09.2016..
  */
@@ -13,6 +17,7 @@ public class WorldEventModel {
     private String occurrence;
     private String occurrenceShift;
     private int subscription;
+    private long timeRemainingInMilliseconds;
 
     public WorldEventModel(int id, String title, int icon, String location, String description, String occurrence, String
             occurrenceShift, int subscription) {
@@ -64,5 +69,44 @@ public class WorldEventModel {
     public int getSubscription() {
         return subscription;
     }
+
+    public void setTimeRemainingInMilliseconds(long milliseconds) {
+        this.timeRemainingInMilliseconds = milliseconds;
+    }
+
+    public long getTimeRemainingInMilliseconds() {
+        return timeRemainingInMilliseconds;
+    }
+
+    public String calculateAndDisplay() {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        if(!title.equals("Karka Queen") && !title.equals("Triple Trouble") && !title.equals("Tequatl the Sunless")) {
+
+
+            long countdownTime;
+            String[] repeat = occurrenceShift.split(":");
+            String[] start = occurrence.split(":");
+            long repeatInMillis = Integer.parseInt(repeat[0]) * 3600000;
+            long startInMillis = (Integer.parseInt(start[0]) * 3600000) + (Integer.parseInt(start[1]) * 60000);
+            calendar.getTimeInMillis();
+
+            countdownTime = repeatInMillis - (((-startInMillis) + calendar.getTimeInMillis()) % repeatInMillis);
+            setTimeRemainingInMilliseconds(countdownTime);
+
+        }
+
+        return formatTime();
+    }
+
+    public String formatTime() {
+        return String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(timeRemainingInMilliseconds),
+                TimeUnit.MILLISECONDS.toMinutes(timeRemainingInMilliseconds) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toSeconds(timeRemainingInMilliseconds) % TimeUnit.MINUTES.toSeconds(1));
+    }
+
+
 
 }
